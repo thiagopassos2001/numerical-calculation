@@ -10,3 +10,6 @@
 * VerificationBolzanoWeierstrassTheorem
 * Bisection
 * False Position
+* FixedPoint
+* NewtonRaphson
+* Secant
