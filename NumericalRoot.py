@@ -36,7 +36,7 @@ def BinaryChoice(function, a, b, xk):
 
 #Interval Methods
 
-def Bisection(function,a,b,i_max=1e6,e_abs=0.001,e_rel=0.001,logs=False):
+def Bisection(function,a,b,i_max=1e6,e_abs=1e-6,e_rel=1e-6,logs=False):
 
     '''Calculates the numerical root by the bisection method
     Reference: https://en.wikipedia.org/wiki/Bisection_method
@@ -81,7 +81,7 @@ def Bisection(function,a,b,i_max=1e6,e_abs=0.001,e_rel=0.001,logs=False):
     else:
         print('No root found in interval')
 
-def FalsePosition(function,a,b,i_max=1e6,e_abs=0.001,e_rel=0.001,logs=False):
+def FalsePosition(function,a,b,i_max=1e6,e_abs=1e-6,e_rel=1e-6,logs=False):
 
     '''Calculates the numerical root by the false position method
     Reference: https://en.wikipedia.org/wiki/Regula_falsi
@@ -130,7 +130,7 @@ def FalsePosition(function,a,b,i_max=1e6,e_abs=0.001,e_rel=0.001,logs=False):
 
 #Open Methods
 
-def FixedPoint(function,phi,x0,i_max=1e6,e_abs=0.001,e_rel=0.001,logs=False):
+def FixedPoint(function,phi,x0,i_max=1e6,e_abs=1e-6,e_rel=1e-6,logs=False):
 
     '''Calculates the numerical root by the fixed point method
     Reference: https://en.wikipedia.org/wiki/Fixed-point_iteration
@@ -170,7 +170,7 @@ def FixedPoint(function,phi,x0,i_max=1e6,e_abs=0.001,e_rel=0.001,logs=False):
 
     return {'root':xk, 'iterations':i_max - i, 'e_rel':erk, 'e_abs':abs(function(xk))}
 
-def NewtonRaphson(function,derivative_function,x0,i_max=1e6,e_abs=0.001,e_rel=0.001,logs=False):
+def NewtonRaphson(function,derivative_function,x0,i_max=1e6,e_abs=1e-6,e_rel=1e-6,logs=False):
 
     '''Calculates the numerical root by the Newton-Raphson method
     Reference: https://en.wikipedia.org/wiki/Newton's_method
@@ -210,7 +210,7 @@ def NewtonRaphson(function,derivative_function,x0,i_max=1e6,e_abs=0.001,e_rel=0.
 
     return {'root':xk, 'iterations':i_max - i, 'e_rel':erk, 'e_abs':abs(function(xk))}
 
-def Secant(function,x0,d=0.00001,x_1=False,i_max=1e6,e_abs=0.001,e_rel=0.01,logs=False):
+def Secant(function,x0,d=0.00001,x_1=False,i_max=1e6,e_abs=1e-6,e_rel=1e-6,logs=False):
 
     '''Calculates the numerical root by the secant method
     Reference: https://en.wikipedia.org/wiki/Secant_method
