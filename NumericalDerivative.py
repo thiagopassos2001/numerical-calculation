@@ -1,5 +1,84 @@
 # Read more in: https://en.wikipedia.org/wiki/List_of_Runge%E2%80%93Kutta_methods
 
+#Auxiliary Methods
+def TridiagonalMatrix(p,q,g,x0,y0,x1,y1,x_list,h):
+    '''
+    p, q ang g functions are the following format y" + p(x)y' + q(x)y = g(x)
+    'x0' and 'y0' are the initial solution for y(x) - Boundary Value Problem
+    'x1' and 'y1' are the initial solution for y(x) - Boundary Value Problem
+    'a' and 'b' are the limits of method (a=x0, b=x1)
+    'list_x' is the list of discretized x values
+    'h' is step close to 0
+    '''
+
+    n = len(x_list[1:-1])
+    A = []
+    b = []
+
+    Awk = [(1 - (h*p(i)*0.5)) for i in x_list[1:-1]]
+    Aek = [(1 + (h*p(i)*0.5)) for i in x_list[1:-1]]
+    Apk = [(((h**2)*q(i)) - 2) for i in x_list[1:-1]]
+    bk = [((h**2)*g(i)) for i in x_list[1:-1]]
+
+    for i in range(0,n):
+        A_line = []
+        for j in range(0,n):
+            if (i == j):
+                A_line.append(Apk[i])
+            elif ((j-1) == i):
+                A_line.append(Aek[i])
+            elif ((i-1) == j):
+                A_line.append(Awk[i])
+            else:
+                A_line.append(0)
+        
+        A.append(A_line)
+        b.append(bk[i])
+    
+    b[0] = b[0] - (1 - (h*p(x0)*0.5))*y0
+    b[-1] = b[-1] - (1 + (h*p(x1)*0.5))*y1
+
+    return A, b
+
+def GaussElimination(A,b):
+    '''
+    A is coefficients
+    b is result of system
+    '''
+    n = len(b)
+    x = [0]*n
+
+    for k in range(1,n,1):
+        
+        for i in range(k+1,n+1,1):
+            Mult = A[i-1][k-1]/A[k-1][k-1]
+            A[i-1][k-1] = 0
+            b[i-1] = b[i-1] - Mult*b[k-1]
+            
+            for j in range(k+1,n+1,1):
+                A[i-1][j-1] = A[i-1][j-1] - Mult*A[k-1][j-1] 
+
+    return A,b
+
+def SolveUpperTriangular(U,b):
+    '''
+    U is upper triangular matrix
+    b is result of system
+    '''
+    n = len(b)
+    x = [0]*n
+    x[-1] = b[-1] / U[-1][n-1]
+
+    for i in range(n-1, 0,-1):
+        sum_temporary = 0
+        for j in range(i + 1,n + 1):
+            sum_temporary = sum_temporary + (U[i-1][j-1] * x[j-1])
+        
+        x[i-1] = (b[i-1] - sum_temporary) / U[i-1][i-1]
+
+    return x
+
+# Main functions
 def EulerMethod(df,x0,y0,a,b,n=1e6):
 
     '''Euler method is a first-order numerical procedure for solving ordinary differential equations with a given initial value
