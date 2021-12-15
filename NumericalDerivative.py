@@ -210,7 +210,8 @@ def RalstonMethod(df,x0,y0,a,b,n=1e6):
 
 def RungeKutta4Method(df,x0,y0,a,b,n=1e6):
 
-    '''Runge–Kutta fourth-order method using the general formula with s=4 evaluated, as explained above, at the starting point, the midpoint and the end point of any interval
+    '''Runge–Kutta fourth-order method using the general formula with s=4 evaluated
+    at the starting point, the midpoint and the end point of any interval
     Reference: https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods#Derivation_of_the_Runge%E2%80%93Kutta_fourth-order_method
     Required inputs:
     'df' is first-order ordinary differential equation: df = g(x)
