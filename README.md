@@ -21,6 +21,7 @@ print(a,b)
 
 OUTPUT: -2.5, 0
 ```
+
 * VerificationBolzanoWeierstrassTheorem
 
 Example:
@@ -36,6 +37,7 @@ else:
     
 OUTPUT: 'no, the root is not in the range'
 ```
+
 * Bisection
 
 Example:
@@ -49,7 +51,21 @@ OUTPUT:
  'iterations': 9,
  'root': 1.1796875}
 ```
+
 * False Position
+
+Example:
+```python
+f = lambda x:(x**3) + (2*x) - 4
+FalsePosition(f,1,5,i_max=100,e_abs=False,e_rel=0.01)
+
+OUTPUT:
+{'e_abs': 0.28503459703327927,
+ 'e_rel': 0.00897367452059495,
+ 'iterations': 7,
+ 'root': 1.1320673171230085}
+```
+
 * FixedPoint
 * NewtonRaphson
 * Secant
