@@ -4,17 +4,57 @@
 
 ## Conteúdo:
 
-### Raízes Numéricas (NumericalRoot.py):
+### Raízes Numéricas - NumericalRoot.py
 
 * BinaryChoice
+
+Example:
+```python
+function = lambda x: x + 2
+a = 0
+b = -5
+xk = (a + b)/2
+
+a, b = BinaryChoice(function, a, b, xk)
+
+print(a,b)
+
+OUTPUT: -2.5, 0
+```
 * VerificationBolzanoWeierstrassTheorem
+
+Example:
+```python
+function = lambda x: x + 2
+a = 0
+b = 5
+
+if VerificationBolzanoWeierstrassTheorem(function, a, b):
+    print('yes, the root is in the range')
+else:
+    print('no, the root is not in the range')
+    
+OUTPUT: 'no, the root is not in the range'
+```
 * Bisection
+
+Example:
+```python
+f = lambda x:(x**3) + (2*x) - 4
+Bisection(f,1,5,i_max=False,e_abs=False,e_rel=0.01)
+
+OUTPUT: 
+{'e_abs': 0.0011019706726074219,
+ 'e_rel': 0.006622516556291391,
+ 'iterations': 9,
+ 'root': 1.1796875}
+```
 * False Position
 * FixedPoint
 * NewtonRaphson
 * Secant
 
-### Solução EDOs de 1ª Ordem (NumericalDerivative.py):
+### Solução EDOs de 1ª Ordem - NumericalDerivative.py
 
 * EulerMethod
 * MidpointMethod
